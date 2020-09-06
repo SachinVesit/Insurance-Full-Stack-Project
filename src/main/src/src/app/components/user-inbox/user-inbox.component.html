@@ -1,0 +1,70 @@
+<div class="container" *ngIf="tableData">
+    <h2>{{loggedInUsername}} Tasks Details:</h2>
+    <div *ngIf="!enableTaskDetail">
+        <table class="table">
+            <thead>
+                <th> Requestor </th>
+                <th> Task assign date </th>
+                <th> Accept </th>
+                <th> Reject </th>
+                <th> Task Details </th>
+            </thead>
+            <tr *ngFor="let task of tasks">
+                <td> {{task.requestor}} </td>
+                <td> {{task.taskAssignDate}} </td>
+                <!-- <td> <button type="button" class="btn btn-info" (click)="approveRequest(task)">accept</button> </td> -->
+                <td> <mat-icon class="cursor" (click)="approveRequest(task)">check_circle</mat-icon> </td>
+                <td> <mat-icon class="cursor" (click)="rejectRequest(task)">highlight_off</mat-icon> </td>
+                <!-- <td> <button type="button" class="btn btn-info" (click)="rejectRequest(task)">reject</button> </td> -->
+                <td> <button type="button" class="btn btn-info" (click)="getTaskDetails(task)">Details</button> </td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="enableTaskDetail">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class='col-md-3'>Application No:</div>
+                    <div class='col-md-3'>{{taskDetails.applicant.id}}</div>
+                </div>
+                <div class="row">
+                <div class='col-md-3'>Full name:</div>
+                <div class='col-md-3'>{{taskDetails.applicant.fullName}}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-3'>Product name:</div>
+                    <div class='col-md-3'>{{taskDetails.applicant.productName}}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-3'>Premium amount:</div>
+                    <div class='col-md-3'>{{taskDetails.applicant.premiumAmount}}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-3'>Sum assured amount:</div>
+                    <div class='col-md-3'>{{taskDetails.applicant.sumAssuredAmount}}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-3'>Age:</div>
+                    <div class='col-md-3'>{{taskDetails.applicant.age}}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-3'>Date of birth:</div>
+                    <div class='col-md-3'>{{taskDetails.applicant.dateOfBirth}}</div>
+                </div>
+                <div class="row">
+                    <div class='col-md-3'>Number of years:</div>
+                    <div class='col-md-3'>{{taskDetails.applicant.noOfYears}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1"><button type="button" class="btn btn-info" (click)="enableTaskDetail = false">Back</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="!tableData">
+    <h2>No tasks for {{loggedInUsername}}</h2>
+</div>

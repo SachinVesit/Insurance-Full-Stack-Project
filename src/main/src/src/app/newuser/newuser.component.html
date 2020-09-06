@@ -1,0 +1,91 @@
+<div class="container">
+  <button type="submit" class="float-right btn btn-warning" (click)="goToUserDetailsPage()"><mat-icon>details</mat-icon>User Details</button>
+  <button type="button" style="margin-right: 1px;" class="btn btn-primary float-right"
+    (click)="goToHomePage()"><mat-icon>home</mat-icon>Home</button>
+  <h2> {{headerStr}}:</h2>
+  <form ngNativeValidate>
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="username">Username</label>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="username" name="username" value="{{user.username}}"
+          placeholder="username" [(ngModel)]="user.username" required />
+        <span style="color: red;" *ngIf="errorUsername">this username already exists </span>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="fullName">Fullname</label>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="fullName" name="fullName" value="{{user.fullName}}"
+          placeholder="Full name" [(ngModel)]="user.fullName">
+      </div>
+    </div>
+
+    <div class="row form-group" *ngIf="showPassfield">
+      <div class="col-md-2">
+        <label for="password">Password</label>
+      </div>
+      <div class="col-md-3">
+        <input type="password" class="form-control" required id="password" name="password" value="{{user.password}}"
+          placeholder="Password" [(ngModel)]="user.password">
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="emailId">Email Id</label>
+      </div>
+      <div class="col-md-3">
+        <input type="email" class="form-control" id="emailId" name="emailId" pattern="[^ @]*@[^ @]*"
+          placeholder="Email Id" [(ngModel)]="user.emailId" required>
+        <span style="color: red;" *ngIf="errorEmail">this email already exists </span>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="department">Department</label>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="department" name="department" placeholder="Department"
+          [(ngModel)]="user.department">
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="employeeCode">Employee code</label>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="employeeCode" name="employeeCode" placeholder="Employee code"
+          [(ngModel)]="user.employeeCode" required>
+        <span style="color: red;" *ngIf="errorEmpCode">this employee code already exists </span>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="options">User Roles:</label>
+      </div>
+      <div class="col-md-3">
+        <div *ngFor="let role of userRoles">
+          <label>
+            <input type="checkbox" name="role" value="{{role.value}}" [(ngModel)]="role.checked" />
+            {{role.name}}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-success" (click)="validateUsername()" *ngIf="enableCreate">Submit</button>
+        <button type="submit" class="btn btn-info" (click)="getPasswordToUpdate()" *ngIf="!enableCreate">Update</button>
+      </div>
+    </div>
+  </form>
+</div>

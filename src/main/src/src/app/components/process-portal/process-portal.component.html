@@ -1,0 +1,19 @@
+<div class="container" *ngIf="tableData">
+    <button type="button" class="btn btn-primary float-right" (click)="goToHomePage()"><mat-icon>home</mat-icon>Home</button>
+    <h2>Current Task Details:</h2>
+    <table class="table">
+        <thead>
+            <th> Assignee name </th>
+            <th> Requestor </th>
+            <th> Task assign date </th>
+        </thead>
+        <tr *ngFor="let task of tasks">
+            <td> {{task.assignee}} </td>
+            <td> {{task.requestor}} </td>
+            <td> {{task.taskAssignDate}} </td>
+        </tr>
+    </table>
+</div>
+<div class="container" *ngIf="!tableData">
+    <h2> Currently no task for any process!!! </h2>
+</div>

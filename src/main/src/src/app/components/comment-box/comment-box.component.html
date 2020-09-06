@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Comment</h1>
+<div mat-dialog-content>
+    <p>Leave a message before perform some task</p>
+</div>
+<div mat-form-field>
+    <input type="text" class="form-control" matInput [(ngModel)]="data.comment">
+</div>
+<div mat-dialog-actions>
+    <button style="margin-right: 10px;" class="btn" mat-button mat-dialog-close>Close</button>
+    <button class="btn" mat-button [mat-dialog-close]="data.comment" cdkFocusInitial>Ok</button>
+</div>
